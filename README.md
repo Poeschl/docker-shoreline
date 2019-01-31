@@ -3,7 +3,7 @@
 [![](https://img.shields.io/microbadger/layers/poeschl/shoreline.svg)](https://microbadger.com/images/poeschl/shoreline)
 [![](https://img.shields.io/microbadger/image-size/poeschl/shoreline.svg)](https://microbadger.com/images/poeschl/shoreline)
 [![](https://img.shields.io/docker/pulls/poeschl/shoreline.svg)](https://hub.docker.com/r/poeschl/shoreline)
-[![](https://img.shields.io/github/license/poeschl/shoreline.svg?maxAge=3600)](https://github.com/poeschl/shoreline/blob/master/LICENCE)
+[![](https://img.shields.io/github/license/poeschl/docker-shoreline.svg?maxAge=3600)](https://github.com/poeschl/docker-shoreline/blob/master/LICENCE)
 
 A docker container wih the [shoreline PixelFlut server](https://github.com/TobleMiner/shoreline) inside.
 
