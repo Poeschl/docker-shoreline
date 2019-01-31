@@ -1,9 +1,9 @@
-FROM debian:9.6-slim as build
+FROM alpine:3.9 as build
 
 WORKDIR /opt
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y git ca-certificates make g++ libvncserver-dev libnuma-dev libsdl2-dev libc6-dev
+RUN apk -Uuv add git ca-certificates make g++ libvncserver-dev sdl2-dev libc6-compat && \
+    apk -Uuv add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing numactl-dev
 
 ENV COMMIT_SHA 'dcfc01a3612ebe98d48d6d5aeac1a6c76a027e88'
 RUN git clone https://github.com/TobleMiner/shoreline.git -b master shoreline && \
@@ -12,15 +12,14 @@ RUN git clone https://github.com/TobleMiner/shoreline.git -b master shoreline &&
     make
 
 
-FROM debian:9.6-slim
+FROM alpine:3.9
 MAINTAINER Poeschl@users.noreply.github.com
 
-EXPOSE 1234
-EXPOSE 5900
+EXPOSE 1234 5900
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y libvncserver1 libnuma1 libsdl2-2.0-0 libc6 xfonts-terminus && \
-    apt-get clean && apt-get autoremove && rm -Rf /var/lib/apt/lists/*
+RUN apk -Uuv add libvncserver sdl2 libc6-compat && \
+    apk -Uuv add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing numactl && \
+    rm /var/cache/apk/*
 
 ENTRYPOINT ["shoreline", "-f", "vnc,port=5900", "-b", "0.0.0.0", "-p", "1234"]
 
