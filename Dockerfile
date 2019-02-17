@@ -5,7 +5,7 @@ WORKDIR /opt
 RUN apk -Uuv add git ca-certificates make g++ libvncserver-dev sdl2-dev libc6-compat && \
     apk -Uuv add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing numactl-dev
 
-ENV COMMIT_SHA 'dcfc01a3612ebe98d48d6d5aeac1a6c76a027e88'
+ENV COMMIT_SHA '567f3ca685ed535ee5744bdfa362617891f9dbba'
 RUN git clone https://github.com/TobleMiner/shoreline.git -b master shoreline && \
     cd shoreline && \
     git checkout ${COMMIT_SHA} && \
