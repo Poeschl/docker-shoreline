@@ -1,18 +1,18 @@
-FROM alpine:3.9 as build
+FROM alpine:3.11 as build
 
 WORKDIR /opt
 
 RUN apk -Uuv add git ca-certificates make g++ libvncserver-dev sdl2-dev libc6-compat && \
     apk -Uuv add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing numactl-dev
 
-ENV COMMIT_SHA '5752160d1fbf4f790f29adeda0af8db4d20bdb48'
+ENV COMMIT_SHA 'b57a295f068682bf60825b65439fd4afa4e13f3a'
 RUN git clone https://github.com/TobleMiner/shoreline.git -b master shoreline && \
     cd shoreline && \
     git checkout ${COMMIT_SHA} && \
     make
 
 
-FROM alpine:3.9
+FROM alpine:3.11
 MAINTAINER Poeschl@users.noreply.github.com
 
 EXPOSE 1234 5900
