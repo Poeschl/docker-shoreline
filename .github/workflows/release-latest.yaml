@@ -1,0 +1,51 @@
+name: Publish latest Docker image
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  hadolint:
+    runs-on: ubuntu-latest
+    container: ghcr.io/hadolint/hadolint:latest-alpine
+    steps:
+      - name: ↩️ Checkout
+        uses: actions/checkout@v2
+
+      - name: 🔎 Run hadolint
+        run: hadolint Dockerfile
+
+  image:
+    name: Release image
+    needs: hadolint
+    runs-on: ubuntu-latest
+    steps:
+      - name: ↩️ Checkout
+        uses: actions/checkout@v2
+
+      - name: ℹ️ Docker meta
+        id: docker_meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ghcr.io/poeschl/shoreline
+          tags: latest
+
+      - name: 🏗️ Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: 🔑 Docker Login
+        uses: docker/login-action@v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 💿 Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
