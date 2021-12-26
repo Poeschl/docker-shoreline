@@ -13,7 +13,7 @@ RUN apk add --no-cache \
   'freetype-dev=2.11.0-r0' \
   'numactl-dev=2.0.14-r0'
 
-ENV COMMIT_SHA 'bd33837dcf0a2d1fe9412ec4119b0af4088bdbaa'
+ENV COMMIT_SHA '05a2bbfb4559090727c51673e1fb47d20eac5672'
 # hadolint ignore=DL3003
 RUN git clone https://github.com/TobleMiner/shoreline.git -b master shoreline && \
   cd shoreline && \
