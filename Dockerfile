@@ -35,3 +35,4 @@ RUN apk add --no-cache \
 ENTRYPOINT ["shoreline", "-f", "vnc,port=5900", "-b", "0.0.0.0", "-p", "1234"]
 
 COPY --from=build /opt/shoreline/shoreline /usr/local/bin/shoreline
+COPY arial.ttf /
