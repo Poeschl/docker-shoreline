@@ -32,7 +32,7 @@ RUN apk add --no-cache \
 'freetype=2.11.0-r0'  \
 'numactl=2.0.14-r0'
 
-ENTRYPOINT ["shoreline", "-f", "vnc,port=5900", "-b", "0.0.0.0", "-p", "1234"]
+ENTRYPOINT ["shoreline", "-f", "vnc,port=5900", "-b", "0.0.0.0", "-p", "1234", "-t", "arial.ttf"]
 
 COPY --from=build /opt/shoreline/shoreline /usr/local/bin/shoreline
 COPY arial.ttf /
