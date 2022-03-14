@@ -4,7 +4,7 @@ WORKDIR /opt
 
 RUN apk add --no-cache \
   'git=2.34.1-r0' \
-  'ca-certificates=20191127-r7' \
+  'ca-certificates=20211220-r0' \
   'make=4.3-r0' \
   'g++=10.3.1_git20211027-r0' \
   'libvncserver-dev=0.9.13-r2' \
