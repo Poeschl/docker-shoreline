@@ -26,7 +26,7 @@ jobs:
 
       - name: ℹ️ Docker meta
         id: docker_meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ghcr.io/poeschl/shoreline
           tags: latest
