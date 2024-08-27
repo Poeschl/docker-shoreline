@@ -49,10 +49,4 @@ jobs:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
-
-      - name: 🗑️ Cleanup old untagged images
-        uses: dylanratcliffe/delete-untagged-containers@v1.2.3
-        with:
-          user: ${{ github.repository_owner }}
-          token: ${{ secrets.SHORELINE_PAT }}
-          package_name: 'shoreline'
+          platforms: linux/amd64,linux/arm64
